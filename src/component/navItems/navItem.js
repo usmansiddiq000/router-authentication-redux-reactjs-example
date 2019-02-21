@@ -4,15 +4,33 @@ import Aux from '../../hoc/hoc';
 import { NavLink, Link } from 'react-router-dom';
 import classes from './navItem.module.css';
 
-const NavItem = (props) => {
+import { connect } from 'react-redux'
+import { AuthAction } from '../../Redux/action'
 
+const NavItem = (props) => {
      console.log(props.items)
-    let navItems =  props.items.map(item => {
-         return (<li key = {item.Name} className="nav-item">
-                  <NavLink className="nav-link" exact  activeClassName="active" to={item.path}>{item.Name}</NavLink>
-                </li>)
-     })
+  let leftNav =  props.items.map(item => {
+      return (
+        <li key = {item.Name} className="nav-item">
+            <NavLink className="nav-link" exact  activeClassName="active" to= {item.path}>{item.Name}</NavLink>
+        </li>)}
+      )
+
+  const logout = () => {
+    props.authAction(false);
+  }
      
+  let rightNav = (
+    <ul class="navbar-nav">
+        <NavLink className="nav-link" exact  activeClassName="active" to='/login'>logoin</NavLink>
+    </ul>)
+  if(props.isAuthenticated) {
+    rightNav = (
+      <ul class="navbar-nav">
+          <NavLink className="nav-link" exact  onClick = {() => logout()} activeClassName="active" to='/login'>logout</NavLink>
+      </ul>)
+    } 
+
  return(
           <Aux>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,16 +38,21 @@ const NavItem = (props) => {
             </button>
             <div className="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
             <ul className="navbar-nav">
-            {navItems}
+            {leftNav}
             </ul>
-            <ul class="navbar-nav">
-            <NavLink className="nav-link" exact  activeClassName="active" to='/logout'>logout</NavLink>
-            <NavLink className="nav-link" exact  activeClassName="active" to='/login'>logoin</NavLink>
-            </ul>
+            {rightNav}
             </div>
           
          </Aux>   
         )
 }
 
-export default NavItem;
+const mapDispatchToProps = dispatch => ({
+  authAction: (isAuthenticated) => dispatch(AuthAction(isAuthenticated))
+})
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.AuthReducer.isAuthenticated
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavItem);

@@ -3,20 +3,26 @@ import { connect } from 'react-redux'
 import {AuthAction} from '../../Redux/action'
 
 import Aux from '../../hoc/hoc';
+import Spinner from '../ui-components/spinner/spinner'
 
 const Home = (props) => {
-        console.log(props)
-       //props.AuthAction();
+    let home = ( <div>this is home </div>)
+    if(props.isStart) {
+        home = ( <Spinner />)
+    }
 
     return (
         <Aux>
-        <div>this is home component</div>
-        <button onClick = {() => {props.authAction(true,'loggedin')}}>clickMe</button>
+         {home}
         </Aux>
     )
 
 }
 const mapDispatchToProps = dispatch => ({
-    authAction: (a, b) => dispatch(AuthAction(a, b))
+    authAction: (isAuthenticated) => dispatch(AuthAction(isAuthenticated))
 })
-export default connect(null, mapDispatchToProps)(Home);
+const mapStateToProps = state => ({
+    isAuthenticated: state.AuthReducer.isAuthenticated,
+    isStart : state.AuthStart.start
+  })
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

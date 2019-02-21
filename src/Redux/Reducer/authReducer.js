@@ -1,25 +1,36 @@
 
 const auth = {
-    isAuthenticated : false
+    isAuthenticated : false,
+    start : false
 }
 
 const AuthReducer = (state = auth, action) => {
-    debugger
     switch(action.type){
-        case 'loggedin':
+        case 'LOGGED_IN':
              return {
                  ...state,
                  isAuthenticated : action.isAuthenticated
              }
-        case 'loggedout':
-             return {
-                ...state,
-                isAuthenticated : action.isAuthenticated
-             }
         default:
-             return state
+             return {
+                 ...state
+             }
     }
-   
 }
 
-export default AuthReducer;
+const AuthStart = (state = auth, action) => {
+    switch(action.type) {
+        case 'AUTH_START':
+            return{
+                ...state,
+                start : action.start
+            }
+        default:
+        return {
+            ...state
+        }
+    }
+}
+
+
+export  { AuthReducer, AuthStart };

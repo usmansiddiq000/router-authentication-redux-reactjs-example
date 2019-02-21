@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import classes from './main.module.css'
 
@@ -8,6 +8,7 @@ import Blog from '../../component/blog/blog'
 import Pricing from '../../component/pricing/pricing';
 import Contact from '../../component/contact/contact'
 import Login from '../../component/login/login';
+import Auth from '../../component/auth/auth'
 
 class Main extends Component {
    
@@ -15,12 +16,11 @@ class Main extends Component {
         return(
            <Switch>
                <Route  exact path='/' component = {Home} />
-               <Route   path='/blog' component = {Blog} />
-               <Route  path='/pricing' component = {Pricing} />
-               <Route  path='/contact' component = {Contact} />
+               <Auth   path='/blog' component = {Blog} />
+               <Auth   path='/pricing' component = {Pricing} />
+               <Auth   path='/contact' component = {Contact} />
                <Route  path='/login' component = {Login} />
-               <Redirect from='/logout' to='/login'/>
-               <Route component={Home} />
+               <Route  component={Home} />
            </Switch>
         )
     }

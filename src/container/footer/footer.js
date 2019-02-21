@@ -5,6 +5,7 @@ import classes from './footer.module.css';
 class Footer extends Component {
     render(){
         return(
+            <div className = {classes.footerColor}>
             <footer className="page-footer font-small blue pt-4">
                 <div className="container-fluid text-center text-md-left">
                     <div className="row">
@@ -53,6 +54,7 @@ class Footer extends Component {
                     <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
                 </div>
             </footer>
+            </div>
         )
     }
 }

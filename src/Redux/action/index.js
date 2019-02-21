@@ -1,2 +1,2 @@
 
-export { AuthAction } from './authAction'
+export { AuthAction, loginApi } from './authAction'
