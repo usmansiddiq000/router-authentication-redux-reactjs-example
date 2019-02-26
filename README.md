@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Created by Muhammad Usman Siddiq
 
 ```
-git clone https://github.com/usmansiddiq000/router-authentication-redux-react-examplejs.git
+git clone https://github.com/usmansiddiq000/router-authentication-redux-reactjs-example.git
 ```
 
 ## Available Scripts
