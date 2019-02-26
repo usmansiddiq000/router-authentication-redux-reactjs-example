@@ -1,8 +1,18 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Created by Muhammad Usman Siddiq
+
+```
+git clone https://github.com/usmansiddiq000/router-authentication-redux-react-examplejs.git
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+
 
 ### `npm start`
 
