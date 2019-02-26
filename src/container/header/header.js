@@ -23,7 +23,7 @@ class Header extends Component {
             {
                 Name:'Contact',
                 path:'/contact'
-            },
+            }
          ]
      }
 

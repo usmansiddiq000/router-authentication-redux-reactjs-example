@@ -8,7 +8,6 @@ import { connect } from 'react-redux'
 import { AuthAction } from '../../Redux/action'
 
 const NavItem = (props) => {
-     console.log(props.items)
   let leftNav =  props.items.map(item => {
       return (
         <li key = {item.Name} className="nav-item">
@@ -17,7 +16,7 @@ const NavItem = (props) => {
       )
 
   const logout = () => {
-    props.authAction(false);
+    props.authAction(false, null);
   }
      
   let rightNav = (
@@ -48,7 +47,7 @@ const NavItem = (props) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  authAction: (isAuthenticated) => dispatch(AuthAction(isAuthenticated))
+  authAction: (isAuthenticated, user) => dispatch(AuthAction(isAuthenticated, user))
 })
 
 const mapStateToProps = state => ({

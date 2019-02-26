@@ -1,8 +1,10 @@
+import axios from '../../axios'
 
-exports.AuthAction = (isAuthenticated) => {
+const AuthAction = (isAuthenticated, user) => {
     return {
     type: 'LOGGED_IN',
     isAuthenticated: isAuthenticated,
+    user:user
   }}
 
 const AuthStart = (start) => {
@@ -12,13 +14,22 @@ const AuthStart = (start) => {
   }
 }
 
-exports.loginApi = (isAuthenticated) => {
+const loginApi = (isAuthenticated, data) => {
      return dispatch => {
        dispatch(AuthStart(true))
-       setTimeout(() => {
-         dispatch(exports.AuthAction(isAuthenticated));
-         dispatch(AuthStart(false))
-       }, 2500);
+       setTimeout(function(){ 
+        dispatch(AuthAction(isAuthenticated, data));
+        dispatch(AuthStart(false))
+        }, 3000)
+      //  axios.post('/Users/login', data)
+      //   .then(function (response) {
+      //     dispatch(AuthAction(isAuthenticated, response.data));
+      //     dispatch(AuthStart(false))
+      //   })
+      //   .catch(function (error) {
+      //     dispatch(AuthAction(false, null));
+      //     dispatch(AuthStart(false))
+      //   });
   }} 
-
+export{AuthAction, loginApi}
   

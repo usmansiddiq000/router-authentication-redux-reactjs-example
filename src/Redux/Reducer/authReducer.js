@@ -1,7 +1,8 @@
 
 const auth = {
     isAuthenticated : false,
-    start : false
+    start : false,
+    user:null
 }
 
 const AuthReducer = (state = auth, action) => {
@@ -9,7 +10,8 @@ const AuthReducer = (state = auth, action) => {
         case 'LOGGED_IN':
              return {
                  ...state,
-                 isAuthenticated : action.isAuthenticated
+                 isAuthenticated : action.isAuthenticated,
+                 user: action.user
              }
         default:
              return {
